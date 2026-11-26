@@ -1,21 +1,24 @@
+'use client';
+
+import { useState } from 'react';
 import {
   ArrowRight,
-  Award,
-  BookOpen,
-  CheckCircle2,
-  ClipboardList,
+  Bot,
   Compass,
   FileSpreadsheet,
-  HeartHandshake,
   Layers,
-  MessageSquareText,
-  MonitorPlay,
   Palette,
   Route,
-  UserCircle2,
+  Sparkles,
+  BookOpen,
+  MonitorPlay,
+  Award,
+  CheckCircle2,
+  Users2,
+  Lightbulb,
 } from 'lucide-react';
-import { SafeImage } from '../components/SafeImage';
-import type { LearningProgress, NavRoute } from '../types/diferensa';
+import { SafeImage } from '@/components/SafeImage';
+import type { LearningProgress, NavRoute } from '@/types/diferensa';
 
 interface BerandaPageProps {
   progress: LearningProgress;
@@ -33,119 +36,62 @@ export function BerandaPage({
   onOpenGuide,
 }: BerandaPageProps) {
   const learningStages: {
-    id: NavRoute;
     step: string;
-    englishTitle: string;
-    indonesianSub: string;
-    icon: typeof ClipboardList;
-    isDone: boolean;
-    accentBg: string;
-    accentText: string;
-  }[] = [
-    {
-      id: 'tes-diagnostik',
-      step: '01',
-      englishTitle: 'Diagnostic Test',
-      indonesianSub: 'Kenali profil belajar siswa',
-      icon: ClipboardList,
-      isDone: progress.diagnosticResult !== null,
-      accentBg: 'bg-sky-50',
-      accentText: 'text-sky-700',
-    },
-    {
-      id: 'materi-pembelajaran',
-      step: '02',
-      englishTitle: 'Learning Materials',
-      indonesianSub: 'Konsep & prinsip diferensiasi',
-      icon: BookOpen,
-      isDone: progress.completedModules.length >= totalModules,
-      accentBg: 'bg-violet-50',
-      accentText: 'text-violet-700',
-    },
-    {
-      id: 'simulasi-kelas',
-      step: '03',
-      englishTitle: 'Classroom Simulation',
-      indonesianSub: 'Latihan studi kasus SD',
-      icon: MonitorPlay,
-      isDone: Object.keys(progress.completedSimulations).length >= totalSimulations,
-      accentBg: 'bg-teal-50',
-      accentText: 'text-teal-700',
-    },
-    {
-      id: 'rencana-ajar',
-      step: '04',
-      englishTitle: 'Digital Lesson Planner',
-      indonesianSub: 'Susun modul ajar fleksibel',
-      icon: FileSpreadsheet,
-      isDone: progress.savedLessonPlans.length > 0,
-      accentBg: 'bg-blue-50',
-      accentText: 'text-blue-900',
-    },
-    {
-      id: 'evaluasi-akhir',
-      step: '05',
-      englishTitle: 'Final Evaluation',
-      indonesianSub: 'Uji pemahaman & skor akhir',
-      icon: Award,
-      isDone: progress.evaluationResult !== null,
-      accentBg: 'bg-sky-50',
-      accentText: 'text-sky-800',
-    },
-  ];
-
-  const corePillars: {
-    id: string;
     route: NavRoute;
     title: string;
-    subtitle: string;
-    description: string;
-    example: string;
-    icon: typeof Layers;
-    iconBg: string;
+    desc: string;
+    icon: typeof Compass;
+    isDone: boolean;
   }[] = [
     {
-      id: 'konten',
-      route: 'diferensiasi-konten',
-      title: 'Diferensiasi Konten',
-      subtitle: 'Apa yang dipelajari siswa',
-      description:
-        'Menyajikan materi inti melalui ragam media—kartu gambar, bacaan bertingkat, audio cerita, hingga benda konkret—sesuai kesiapan dan gaya belajar anak SD.',
-      example: 'Contoh SD: Bacaan fabel 3 level panjang teks di kelas 2.',
-      icon: Layers,
-      iconBg: 'bg-sky-100 text-sky-800',
+      step: '01',
+      route: 'tes-diagnostik',
+      title: 'Uji Refleksi & Tes Diagnostik',
+      desc: 'Tes 6 skenario kelas SD untuk memetakan profil belajar serta titik salah kaprah pada Konten, Proses, dan Produk.',
+      icon: Compass,
+      isDone: progress.diagnosticResult !== null,
     },
     {
-      id: 'proses',
-      route: 'diferensiasi-proses',
-      title: 'Diferensiasi Proses',
-      subtitle: 'Bagaimana siswa memaknai',
-      description:
-        'Merancang variasi aktivitas pendampingan di kelas seperti stasiun belajar keliling, kelompok kecil terpandu (scaffolding), dan diskusi berpasangan.',
-      example: 'Contoh SD: Meja kertas lipat pecahan vs tantangan soal cerita.',
-      icon: Route,
-      iconBg: 'bg-violet-100 text-violet-800',
+      step: '02',
+      route: 'materi-pembelajaran',
+      title: 'Materi Pembelajaran & Kasus Riil',
+      desc: 'Konsep dasar, karakteristik, serta komparasi sisi-ke-sisi antara miskonsepsi umum vs solusi diferensiasi Kurikulum Merdeka.',
+      icon: BookOpen,
+      isDone: progress.completedModules.length >= totalModules,
     },
     {
-      id: 'produk',
-      route: 'diferensiasi-produk',
-      title: 'Diferensiasi Produk',
-      subtitle: 'Bagaimana bukti belajar ditunjukkan',
-      description:
-        'Memberi pilihan bentuk karya akhir sesuai minat siswa seperti poster mini, presentasi lisan, atau diorama sederhana dengan satu rubrik konsep inti.',
-      example: 'Contoh SD: Pilihan poster siklus air, drama mini, atau maket.',
-      icon: Palette,
-      iconBg: 'bg-teal-100 text-teal-800',
+      step: '03',
+      route: 'simulasi-kelas',
+      title: 'Simulasi Keputusan Kelas SD',
+      desc: 'Latihan mengambil keputusan instruksional langsung pada studi kasus kelas dengan beragam tingkat kesiapan murid.',
+      icon: MonitorPlay,
+      isDone: Object.keys(progress.completedSimulations).length >= totalSimulations,
+    },
+    {
+      step: '04',
+      route: 'rencana-ajar',
+      title: 'Rencana Ajar Digital (Modul Ajar)',
+      desc: 'Lembar kerja terstruktur merumuskan modul berdiferensiasi yang praktis, fleksibel, dan siap cetak untuk administrasi guru.',
+      icon: FileSpreadsheet,
+      isDone: progress.savedLessonPlans.length > 0,
+    },
+    {
+      step: '05',
+      route: 'evaluasi-akhir',
+      title: 'Evaluasi & Refleksi Akhir',
+      desc: 'Uji pemahaman akhir berjenjang (tiered evaluation) untuk mengukur kemajuan pemahaman pedagogis Anda.',
+      icon: Award,
+      isDone: progress.evaluationResult !== null,
     },
   ];
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      {/* Landing Page Top Navigation Bar (Clean & Independent) */}
+      {/* Landing Page Header (Clean, Standalone, No Dashboard Shell) */}
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-sm border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-900 via-violet-700 to-teal-500 flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-blue-900 text-white flex items-center justify-center shadow-xs">
               <Compass className="w-5 h-5 text-white" aria-hidden="true" />
             </div>
             <div>
@@ -158,11 +104,19 @@ export function BerandaPage({
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              onClick={() => onNavigate('konsultasi-ai')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold text-[#1e3a8a] hover:bg-[#f0f4f8] transition-colors cursor-pointer"
+            >
+              <Bot className="w-4 h-4 text-[#1e3a8a]" />
+              <span className="hidden sm:inline">Tanya AI</span>
+            </button>
             <button
               type="button"
               onClick={onOpenGuide}
-              className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+              className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
             >
               Petunjuk Alur
             </button>
@@ -178,236 +132,298 @@ export function BerandaPage({
         </div>
       </header>
 
-      {/* Main Landing Content */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12 sm:space-y-16">
-        {/* Hero Section */}
-        <section className="rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 lg:p-10 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            <div className="lg:col-span-7 flex flex-col justify-center">
-              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mb-5">
-                <span className="px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-blue-900 text-xs font-bold uppercase tracking-wider">
-                  Kurikulum Merdeka SD
-                </span>
-                <span className="hidden sm:inline text-slate-300" aria-hidden="true">
-                  ·
-                </span>
-                <span className="text-xs font-medium text-slate-600">
-                  Media Praktis Guru Sekolah Dasar
-                </span>
-              </div>
+      {/* Main Landing Content Container */}
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16 sm:space-y-20">
+        {/* Section 1: Hero & Real Classroom Visual */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-6 space-y-6">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-slate-900 leading-[1.18] tracking-tight text-balance">
+              Penerapan Pembelajaran Berdiferensiasi yang Realistis di Kelas SD.
+            </h1>
 
-              <h1 className="font-display text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold text-slate-900 leading-[1.15] tracking-tight text-balance max-w-2xl">
-                Pahami Diferensiasi, Rancang Pembelajaran yang Bermakna
-              </h1>
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+              Diferensiasi bukan berarti menyiapkan 30 rencana modul ajar berbeda untuk 30 murid, dan bukan pula menghadiahi murid yang cepat selesai dengan tumpukan soal tambahan. DIFERENSA membantu guru membedakan strategi pada <strong>Konten</strong>, <strong>Proses</strong>, dan <strong>Produk</strong> secara proporsional dan ramah anak.
+            </p>
 
-              <p className="mt-4 text-base text-slate-600 leading-relaxed max-w-xl">
-                Platform belajar interaktif khusus guru Sekolah Dasar untuk mengenali keragaman
-                kebutuhan murid, berlatih simulasi kasus kelas nyata, dan menyusun rencana ajar
-                berdiferensiasi yang ramah anak.
-              </p>
-
-              <div className="mt-7 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => onNavigate('tes-diagnostik')}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-900 hover:bg-blue-800 text-white text-sm font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer shadow-xs"
-                >
-                  <span>Mulai Belajar</span>
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={onOpenGuide}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-sky-50 hover:bg-sky-100 text-blue-900 border border-sky-200 text-sm font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-                >
-                  <BookOpen className="w-4 h-4" aria-hidden="true" />
-                  <span>Lihat Panduan</span>
-                </button>
-              </div>
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => onNavigate('tes-diagnostik')}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-900 hover:bg-blue-800 text-white font-bold text-xs sm:text-sm transition-colors cursor-pointer shadow-xs"
+              >
+                <span>Mulai Uji Refleksi</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => onNavigate('materi-pembelajaran')}
+                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm border border-slate-300 transition-colors cursor-pointer"
+              >
+                <BookOpen className="w-4 h-4 text-slate-500" />
+                <span>Lihat Contoh Kasus</span>
+              </button>
             </div>
+          </div>
 
-            <div className="lg:col-span-5 flex">
-              <div className="w-full rounded-2xl overflow-hidden border border-sky-100 bg-sky-50/50">
+          {/* Hero Classroom Photo from Reference */}
+          <div className="lg:col-span-6 relative">
+            <div className="rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm bg-white p-2">
+              <div className="relative rounded-xl overflow-hidden aspect-[4/3] sm:aspect-[16/11]">
                 <SafeImage
                   src="/images/hero_teacher_students_1795500961365.jpg"
-                  alt="Guru SD mendampingi siswa belajar dengan buku bergambar, balok bangun ruang, dan tablet di kelas yang ramah anak"
-                  className="w-full h-full min-h-[240px] max-h-[340px] lg:max-h-none object-cover"
-                  fallbackTitle="Ilustrasi Guru & Siswa SD DIFERENSA"
+                  alt="Guru SD mendampingi siswa belajar dengan ragam media di ruang kelas ramah anak"
+                  className="w-full h-full object-cover"
+                  fallbackTitle="Kelas Berdiferensiasi SD"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-white/95 backdrop-blur-xs border border-white/40 shadow-xs flex items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-2 text-slate-800 font-semibold truncate">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                    <span className="truncate">Praktik Kelas Nyata: Pendampingan Sesuai Kesiapan</span>
+                  </div>
+                  <span className="text-[11px] text-slate-500 shrink-0 hidden sm:inline">Kurikulum Merdeka</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Lima Tahapan Pembelajaran */}
-        <section aria-labelledby="tahapan-heading" className="space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-            <div>
-              <h2 id="tahapan-heading" className="font-display text-xl sm:text-2xl font-bold text-slate-900">
-                Lima Tahapan Pembelajaran
+        {/* Section 2: 3 Pillars Overview Matrix */}
+        <section className="space-y-6 border-t border-slate-200 pt-12 sm:pt-16">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="space-y-1.5 max-w-2xl">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-900">
+                Pilar Utama Diferensiasi
+              </span>
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Tiga Sudut Pandang Fleksibilitas Kelas
               </h2>
-              <p className="text-sm text-slate-600 mt-1">
-                Ikuti alur terstruktur dari pemetaan kelas hingga evaluasi pemahaman Anda.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {learningStages.map((stage) => {
-              const Icon = stage.icon;
-              return (
-                <button
-                  key={stage.id}
-                  type="button"
-                  onClick={() => onNavigate(stage.id)}
-                  className="group text-left rounded-2xl bg-white border border-slate-200 hover:border-sky-300 p-5 transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer focus-visible:outline-2 focus-visible:outline-blue-900"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center ${stage.accentBg} ${stage.accentText}`}
-                      >
-                        <Icon className="w-5 h-5" aria-hidden="true" />
-                      </div>
-                      <span className="font-mono text-xs font-semibold text-slate-400 tabular-nums">
-                        {stage.step}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display text-sm font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
-                      {stage.englishTitle}
-                    </h3>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      {stage.indonesianSub}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                    {stage.isDone ? (
-                      <span className="inline-flex items-center gap-1.5 text-teal-700">
-                        <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
-                        <span>Selesai</span>
-                      </span>
-                    ) : (
-                      <span className="text-blue-900 group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1">
-                        <span>Buka Tahap</span>
-                        <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-                      </span>
-                    )}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Tiga Pilar Utama */}
-        <section aria-labelledby="tiga-pilar-heading" className="space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-            <div>
-              <h2 id="tiga-pilar-heading" className="font-display text-xl sm:text-2xl font-bold text-slate-900">
-                Tiga Pilar Utama Diferensiasi
-              </h2>
-              <p className="text-sm text-slate-600 mt-1">
-                Eksplorasi strategi mendalam per pilar dilengkapi contoh kasus nyata SD dan lembar kerja.
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Guru tidak wajib mendiferensiasikan ketiga pilar ini sekaligus dalam setiap pertemuan. Pilih pilar yang paling relevan dengan karakteristik materi dan kondisi kelas Anda.
               </p>
             </div>
             <button
               type="button"
               onClick={() => onNavigate('pembelajaran-inklusif')}
-              className="text-sm font-semibold text-teal-800 hover:text-teal-950 inline-flex items-center gap-1.5 self-start sm:self-auto whitespace-nowrap cursor-pointer"
+              className="text-xs font-bold text-blue-900 hover:text-blue-700 inline-flex items-center gap-1.5 shrink-0 cursor-pointer self-start sm:self-auto"
             >
-              <span>Eksplorasi Pembelajaran Inklusif</span>
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              <span>Eksplorasi Kelas Inklusif</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {corePillars.map((pillar) => {
-              const Icon = pillar.icon;
-              return (
-                <button
-                  key={pillar.id}
-                  type="button"
-                  onClick={() => onNavigate(pillar.route)}
-                  className="group text-left rounded-2xl bg-white border border-slate-200 hover:border-blue-900 hover:shadow-xs p-6 flex flex-col justify-between transition-all cursor-pointer"
-                >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+            {/* Pilar Konten */}
+            <div
+              onClick={() => onNavigate('diferensiasi-konten')}
+              className="border border-slate-200 bg-white p-5 sm:p-6 rounded-2xl space-y-3.5 shadow-xs hover:border-blue-900/40 hover:shadow-sm transition-all cursor-pointer group"
+            >
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-sky-100 text-blue-900 flex items-center justify-center font-bold text-xs">
+                    <Layers className="w-4 h-4" />
+                  </div>
                   <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div
-                        className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${pillar.iconBg}`}
-                      >
-                        <Icon className="w-5 h-5" aria-hidden="true" />
-                      </div>
-                      <div>
-                        <h3 className="font-display text-base font-bold text-slate-900 group-hover:text-blue-900">
-                          {pillar.title}
-                        </h3>
-                        <p className="text-xs font-medium text-slate-500">{pillar.subtitle}</p>
-                      </div>
-                    </div>
-                    <p className="text-sm text-slate-600 leading-relaxed">{pillar.description}</p>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 block">
+                      Pilar 01
+                    </span>
+                    <h3 className="font-display text-base font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
+                      Diferensiasi Konten
+                    </h3>
                   </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-900 group-hover:translate-x-0.5 transition-all" />
+              </div>
+              <div className="rounded-xl overflow-hidden aspect-[16/10] bg-slate-100">
+                <SafeImage
+                  src="/images/konten_differentiation_1795505156521.jpg"
+                  alt="Ragam media pembelajaran diferensiasi konten di kelas SD"
+                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  fallbackTitle="Diferensiasi Konten"
+                />
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Penyesuaian terhadap <strong>input materi pembelajaran</strong>. Murid yang membutuhkan bantuan konkret menggunakan alat manipulatif atau media bergambar, sedangkan murid mandiri dapat menelaah bacaan tingkat lanjut.
+              </p>
+              <div className="text-[11px] text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
+                <strong>Contoh SD:</strong> Lembar cerita bergambar vs teks deskripsi bertingkat pada mata pelajaran IPAS.
+              </div>
+            </div>
 
-                  <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-2 w-full">
-                    <p className="text-xs font-medium text-slate-700">{pillar.example}</p>
-                    <ArrowRight className="w-4 h-4 text-blue-900 shrink-0 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+            {/* Pilar Proses */}
+            <div
+              onClick={() => onNavigate('diferensiasi-proses')}
+              className="border border-slate-200 bg-white p-5 sm:p-6 rounded-2xl space-y-3.5 shadow-xs hover:border-amber-700/40 hover:shadow-sm transition-all cursor-pointer group"
+            >
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                    <Route className="w-4 h-4" />
                   </div>
-                </button>
-              );
-            })}
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 block">
+                      Pilar 02
+                    </span>
+                    <h3 className="font-display text-base font-bold text-slate-900 group-hover:text-amber-800 transition-colors">
+                      Diferensiasi Proses
+                    </h3>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-amber-800 group-hover:translate-x-0.5 transition-all" />
+              </div>
+              <div className="rounded-xl overflow-hidden aspect-[16/10] bg-slate-100">
+                <SafeImage
+                  src="/images/proses_differentiation_1795505156957.jpg"
+                  alt="Aktivitas diferensiasi proses kelompok terbimbing di kelas"
+                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  fallbackTitle="Diferensiasi Proses"
+                />
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Penyesuaian terhadap <strong>aktivitas belajar murid</strong>. Mencakup variasi bimbingan berjenjang (scaffolding), stasiun belajar keliling, hingga tutor sebaya terencana di ruang kelas.
+              </p>
+              <div className="text-[11px] text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
+                <strong>Contoh SD:</strong> Guru duduk bersama kelompok terbimbing saat menghitung perkalian bertingkat.
+              </div>
+            </div>
+
+            {/* Pilar Produk */}
+            <div
+              onClick={() => onNavigate('diferensiasi-produk')}
+              className="border border-slate-200 bg-white p-5 sm:p-6 rounded-2xl space-y-3.5 shadow-xs hover:border-teal-700/40 hover:shadow-sm transition-all cursor-pointer group"
+            >
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-xs">
+                    <Palette className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-teal-700 block">
+                      Pilar 03
+                    </span>
+                    <h3 className="font-display text-base font-bold text-slate-900 group-hover:text-teal-800 transition-colors">
+                      Diferensiasi Produk
+                    </h3>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-teal-800 group-hover:translate-x-0.5 transition-all" />
+              </div>
+              <div className="rounded-xl overflow-hidden aspect-[16/10] bg-slate-100">
+                <SafeImage
+                  src="/images/produk_differentiation_1795505159871.jpg"
+                  alt="Ragam unjuk kerja produk siswa SD"
+                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  fallbackTitle="Diferensiasi Produk"
+                />
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Penyesuaian terhadap <strong>cara murid menunjukkan bukti pemahaman</strong>. Bentuk karya akhir dapat beragam (lisan, gambar, catatan), asalkan dinilai dengan kriteria rubrik esensial yang sama.
+              </p>
+              <div className="text-[11px] text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
+                <strong>Contoh SD:</strong> Pilihan menyajikan siklus air lewat poster, drama mini, atau rekaman suara.
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Banner Ajakan Masuk Lab */}
-        <section aria-label="Ajakan Tes Diagnostik">
-          <div className="rounded-2xl bg-gradient-to-r from-blue-900 via-violet-800 to-teal-700 text-white p-6 sm:p-8 overflow-hidden shadow-xs">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-              <div className="lg:col-span-7">
-                <p className="text-xs font-semibold text-sky-200 mb-2">
-                  Langkah Awal yang Disarankan
-                </p>
-                <h2 className="font-display text-2xl sm:text-3xl font-bold leading-snug text-balance">
-                  Sudah Siap Mengenali Profil Belajar Siswa di Kelas Anda?
+        {/* Section: Diagnostic Lab Banner with Reference Imagery */}
+        <section aria-label="Ajakan Uji Refleksi Awal">
+          <div className="rounded-2xl bg-blue-900 text-white p-6 sm:p-8 lg:p-10 shadow-xs overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sky-200 text-xs font-semibold border border-white/15">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Langkah Awal yang Disarankan</span>
+                </div>
+                <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-white leading-snug">
+                  Kenali Profil &amp; Kebutuhan Belajar Murid SD Anda
                 </h2>
-                <p className="mt-3 text-sm sm:text-base text-sky-100 leading-relaxed max-w-xl">
-                  Kerjakan Tes Diagnostik interaktif berdurasi 3 menit untuk mendapatkan rekomendasi
-                  strategi Konten, Proses, dan Produk yang paling cocok bagi murid SD Anda.
+                <p className="text-xs sm:text-sm text-sky-100/90 leading-relaxed max-w-xl">
+                  Ambil tes diagnostik interaktif singkat untuk memetakan kecenderungan gaya belajar (Visual, Auditori, Kinestetik) serta tingkat kesiapan murid di kelas Anda.
                 </p>
-                <div className="mt-6 flex flex-wrap items-center gap-3">
+                <div className="pt-2">
                   <button
                     type="button"
                     onClick={() => onNavigate('tes-diagnostik')}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-blue-900 hover:bg-sky-50 text-sm font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer shadow-xs"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-blue-900 hover:bg-sky-50 text-xs sm:text-sm font-bold transition-colors cursor-pointer shadow-xs"
                   >
-                    <span>
-                      {progress.diagnosticResult
-                        ? 'Lihat atau Ulangi Tes Diagnostik'
-                        : 'Kerjakan Tes Diagnostik Sekarang'}
-                    </span>
-                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    <span>Kerjakan Tes Diagnostik Sekarang</span>
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
-
               <div className="lg:col-span-5">
-                <div className="rounded-xl overflow-hidden border border-white/20 bg-white/10">
+                <div className="rounded-xl overflow-hidden border border-white/20 shadow-md">
                   <SafeImage
                     src="/images/banner_diagnostic_lab_1795500960016.jpg"
-                    alt="Ilustrasi tiga stasiun belajar SD: kartu visual, audio headphone, dan balok eksperimen"
-                    className="w-full h-44 sm:h-52 object-cover"
-                    fallbackTitle="Stasiun Belajar Visual, Auditori, & Kinestetik"
+                    alt="Stasiun belajar interaktif murid SD"
+                    className="w-full h-48 sm:h-56 object-cover"
+                    fallbackTitle="Stasiun Belajar Diagnostik"
                   />
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Section 3: 5-Step Learning Roadmap */}
+        <section className="space-y-6 border-t border-slate-200 pt-12 sm:pt-16">
+          <div className="space-y-1.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-900">
+              Alur Perjalanan Guru
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Tahapan Pembelajaran di Laboratorium DIFERENSA
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 max-w-2xl">
+              Alur terstruktur dari tes diagnostik awal, pembedahan konsep &amp; miskonsepsi, latihan simulasi kelas, hingga perancangan modul ajar yang aplikatif.
+            </p>
+          </div>
+
+          <div className="divide-y divide-slate-200 border border-slate-200 bg-white rounded-2xl overflow-hidden shadow-xs">
+            {learningStages.map((stage) => {
+              const Icon = stage.icon;
+              return (
+                <div
+                  key={stage.step}
+                  onClick={() => onNavigate(stage.route)}
+                  className="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50/80 transition-colors group cursor-pointer"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-sm font-mono font-extrabold text-slate-400 group-hover:text-blue-900 mt-0.5 transition-colors">
+                      {stage.step}
+                    </span>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-display text-sm sm:text-base font-bold text-slate-900 group-hover:text-blue-900 transition-colors">
+                          {stage.title}
+                        </h3>
+                        {stage.isDone && (
+                          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                            <span>Selesai</span>
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl">
+                        {stage.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="text-xs font-bold text-blue-900 flex items-center gap-1.5 sm:self-center shrink-0 group-hover:translate-x-1 transition-transform">
+                    <span>Buka Tahap</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </main>
 
-      {/* Landing Page Footer */}
-      <footer className="border-t border-slate-200 bg-white py-8 mt-12">
+      {/* Landing Page Minimal Footer */}
+      <footer className="border-t border-slate-200 bg-white py-8 mt-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div className="flex items-center gap-2">
             <span className="font-display font-bold text-slate-900 text-sm">DIFERENSA</span>
@@ -438,6 +454,12 @@ export function BerandaPage({
               className="hover:text-slate-900 cursor-pointer"
             >
               Komunitas
+            </button>
+            <button
+              onClick={() => onNavigate('konsultasi-ai')}
+              className="hover:text-blue-900 font-semibold cursor-pointer text-[#1e3a8a]"
+            >
+              Tanya AI
             </button>
           </div>
         </div>
