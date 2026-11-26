@@ -74,7 +74,8 @@ export function KonsultasiAiPage({ onNavigate }: KonsultasiAiPageProps) {
       });
 
       if (!response.ok) {
-        throw new Error('Gagal menghubungi asisten');
+        const errorText = await response.text().catch(() => '');
+        throw new Error(errorText || 'Gagal menghubungi asisten');
       }
 
       if (!response.body) {
@@ -108,14 +109,16 @@ export function KonsultasiAiPage({ onNavigate }: KonsultasiAiPageProps) {
           )
         );
       }
-    } catch {
+    } catch (err: any) {
       setMessages((prev) => [
         ...prev,
         {
           id: (Date.now() + 2).toString(),
           role: 'assistant',
           content:
-            'Terjadi kendala saat memproses jawaban. Pastikan koneksi internet stabil atau API key Google AI telah dikonfigurasi.',
+            err?.message && !err.message.includes('fetch')
+              ? err.message
+              : 'Terjadi kendala saat memproses jawaban. Silakan coba kembali dalam beberapa saat atau periksa API key Anda.',
           timestamp: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
