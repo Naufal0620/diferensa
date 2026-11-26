@@ -54,10 +54,10 @@ export default function SimulationPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
       {/* Header */}
       <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#06525c]/10 text-[#06525c] border border-[#06525c]/20 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e3a8a]/10 text-[#1e3a8a] border border-[#1e3a8a]/20 text-xs font-semibold">
           <span>Tahap 03 / Praktik Simulasi</span>
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-[#06525c] tracking-tight">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-[#1e3a8a] tracking-tight">
           Simulasi Pengambilan Keputusan Guru: Matematika SD
         </h1>
         <p className="text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed">
@@ -119,14 +119,14 @@ export default function SimulationPage() {
                     onClick={() => handleSelectChoice(choice.id)}
                     className={`w-full text-left p-4 rounded-lg border text-xs sm:text-sm transition-all flex items-start gap-3.5 cursor-pointer ${
                       isSelected
-                        ? 'border-[#06525c] bg-[#ebf0ee]/60 ring-1 ring-[#06525c] font-medium text-[#06525c]'
+                        ? 'border-[#1e3a8a] bg-[#f0f4f8]/60 ring-1 ring-[#1e3a8a] font-medium text-[#1e3a8a]'
                         : 'border-slate-200/90 bg-white hover:border-slate-300 text-slate-800'
                     }`}
                   >
                     <span
                       className={`w-6 h-6 rounded flex items-center justify-center text-xs font-bold shrink-0 ${
                         isSelected
-                          ? 'bg-[#06525c] text-white'
+                          ? 'bg-[#1e3a8a] text-white'
                           : 'bg-slate-100 text-slate-700'
                       }`}
                     >
@@ -173,7 +173,7 @@ export default function SimulationPage() {
               <div className="pt-2">
                 <button
                   onClick={handleNextStage}
-                  className="px-5 py-2.5 text-xs font-semibold rounded-md bg-[#06525c] text-white hover:bg-[#086572] cursor-pointer shadow-xs transition-colors"
+                  className="px-5 py-2.5 text-xs font-semibold rounded-md bg-[#1e3a8a] text-white hover:bg-[#1d4ed8] cursor-pointer shadow-xs transition-colors"
                 >
                   {currentStageIdx < stages.length - 1
                     ? 'Lanjut ke Tahapan Berikutnya &rarr;'
@@ -214,7 +214,7 @@ export default function SimulationPage() {
               </button>
               <Link
                 href="/planner"
-                className="px-5 py-2.5 text-xs font-semibold rounded-md bg-[#06525c] text-white hover:bg-[#086572] transition-colors shadow-xs"
+                className="px-5 py-2.5 text-xs font-semibold rounded-md bg-[#1e3a8a] text-white hover:bg-[#1d4ed8] transition-colors shadow-xs"
               >
                 Lanjut ke Rancang Modul &rarr;
               </Link>

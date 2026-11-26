@@ -16,10 +16,10 @@ export default function LearnPage() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
       {/* Header - Editorial & Distinctive */}
       <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#06525c]/10 text-[#06525c] border border-[#06525c]/20 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e3a8a]/10 text-[#1e3a8a] border border-[#1e3a8a]/20 text-xs font-semibold">
           <span>Tahap 02 / Telaah Kasus</span>
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-[#06525c] tracking-tight">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-[#1e3a8a] tracking-tight">
           Komparasi Kasus: Miskonsepsi vs Praktik Diferensiasi Riil
         </h1>
         <p className="text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed">
@@ -32,12 +32,12 @@ export default function LearnPage() {
         {CONCEPT_CARDS.map((card, idx) => (
           <div
             key={card.id}
-            className="border border-slate-200/90 bg-white rounded-xl p-5 sm:p-7 space-y-5 shadow-xs hover:border-[#06525c]/40 transition-colors"
+            className="border border-slate-200/90 bg-white rounded-xl p-5 sm:p-7 space-y-5 shadow-xs hover:border-[#1e3a8a]/40 transition-colors"
           >
             {/* Card Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
               <div>
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#06525c] bg-[#ebf0ee] px-2.5 py-0.5 rounded">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#1e3a8a] bg-[#f0f4f8] px-2.5 py-0.5 rounded">
                   0{idx + 1} &bull; Pilar {card.pillar}
                 </span>
                 <h2 className="text-lg font-bold text-slate-900 mt-2">
@@ -79,7 +79,7 @@ export default function LearnPage() {
             </div>
 
             {/* Pedagogical Takeaway */}
-            <div className="text-xs text-[#06525c] bg-[#ebf0ee] p-3.5 rounded-lg leading-relaxed border border-[#06525c]/10">
+            <div className="text-xs text-[#1e3a8a] bg-[#f0f4f8] p-3.5 rounded-lg leading-relaxed border border-[#1e3a8a]/10">
               <strong>Prinsip Utama:</strong> {card.keyTakeaway}
             </div>
           </div>
@@ -90,13 +90,13 @@ export default function LearnPage() {
       <div className="flex items-center justify-between border-t border-slate-200/80 pt-6">
         <Link
           href="/diagnostic"
-          className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#06525c] transition-colors"
+          className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#1e3a8a] transition-colors"
         >
           &larr; Sebelumnya
         </Link>
         <Link
           href="/simulation"
-          className="px-5 py-2.5 text-xs sm:text-sm font-bold rounded-md bg-[#06525c] text-white hover:bg-[#086572] transition-colors shadow-xs"
+          className="px-5 py-2.5 text-xs sm:text-sm font-bold rounded-md bg-[#1e3a8a] text-white hover:bg-[#1d4ed8] transition-colors shadow-xs"
         >
           Lanjut ke Simulasi &rarr;
         </Link>

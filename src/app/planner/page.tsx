@@ -47,10 +47,10 @@ export default function PlannerPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#06525c]/10 text-[#06525c] border border-[#06525c]/20 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e3a8a]/10 text-[#1e3a8a] border border-[#1e3a8a]/20 text-xs font-semibold">
             <span>Tahap 04 / Kanvas Administrasi</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#06525c] tracking-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#1e3a8a] tracking-tight">
             Perancang Modul Ajar Berdiferensiasi
           </h1>
           <p className="text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed">
@@ -74,7 +74,7 @@ export default function PlannerPage() {
           </button>
           <button
             onClick={handleSave}
-            className="px-4 py-2.5 rounded-md text-xs font-bold bg-[#06525c] hover:bg-[#086572] text-white transition-colors cursor-pointer shadow-xs"
+            className="px-4 py-2.5 rounded-md text-xs font-bold bg-[#1e3a8a] hover:bg-[#1d4ed8] text-white transition-colors cursor-pointer shadow-xs"
           >
             {isSaved ? 'Tersimpan!' : 'Simpan Modul'}
           </button>
@@ -212,13 +212,13 @@ export default function PlannerPage() {
       <div className="flex items-center justify-between border-t border-slate-200/80 pt-6 no-print">
         <Link
           href="/simulation"
-          className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#06525c] transition-colors"
+          className="text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#1e3a8a] transition-colors"
         >
           &larr; Sebelumnya
         </Link>
         <Link
           href="/evaluation"
-          className="px-5 py-2.5 text-xs sm:text-sm font-bold rounded-md bg-[#06525c] text-white hover:bg-[#086572] transition-colors shadow-xs"
+          className="px-5 py-2.5 text-xs sm:text-sm font-bold rounded-md bg-[#1e3a8a] text-white hover:bg-[#1d4ed8] transition-colors shadow-xs"
         >
           Lanjut ke Evaluasi &rarr;
         </Link>

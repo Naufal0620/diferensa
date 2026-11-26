@@ -85,10 +85,10 @@ export default function DiagnosticPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
       {/* Editorial Header */}
       <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#06525c]/10 text-[#06525c] border border-[#06525c]/20 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e3a8a]/10 text-[#1e3a8a] border border-[#1e3a8a]/20 text-xs font-semibold">
           <span>Tahap 01 / Refleksi Awal</span>
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-[#06525c] tracking-tight">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-[#1e3a8a] tracking-tight">
           Pemetaan Mandiri Miskonsepsi Pembelajaran Berdiferensiasi
         </h1>
         <p className="text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed">
@@ -178,7 +178,7 @@ export default function DiagnosticPage() {
               {currentIdx < questions.length - 1 ? (
                 <button
                   onClick={() => setCurrentIdx((prev) => prev + 1)}
-                  className="flex-1 sm:flex-none px-4 py-2.5 min-h-[44px] text-xs font-semibold rounded bg-[#06525c] text-white hover:bg-[#086572] transition-colors cursor-pointer touch-manipulation"
+                  className="flex-1 sm:flex-none px-4 py-2.5 min-h-[44px] text-xs font-semibold rounded bg-[#1e3a8a] text-white hover:bg-[#1d4ed8] transition-colors cursor-pointer touch-manipulation"
                 >
                   Selanjutnya &rarr;
                 </button>
@@ -206,9 +206,9 @@ export default function DiagnosticPage() {
                   aria-label={`Buka skenario nomor ${idx + 1}`}
                   className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] text-xs font-medium rounded-md transition-colors cursor-pointer touch-manipulation flex items-center justify-center ${
                     currentIdx === idx
-                      ? 'bg-[#06525c] text-white font-bold'
+                      ? 'bg-[#1e3a8a] text-white font-bold'
                       : selectedAnswers[q.id]
-                      ? 'bg-[#ebf0ee] text-[#06525c] font-semibold'
+                      ? 'bg-[#f0f4f8] text-[#1e3a8a] font-semibold'
                       : 'text-slate-600 hover:bg-slate-100 border border-slate-300'
                   }`}
                 >
@@ -244,7 +244,7 @@ export default function DiagnosticPage() {
                 </button>
                 <Link
                   href="/learn"
-                  className="flex-1 sm:flex-none text-center px-4 py-2 text-xs font-semibold rounded bg-[#06525c] text-white hover:bg-[#086572]"
+                  className="flex-1 sm:flex-none text-center px-4 py-2 text-xs font-semibold rounded bg-[#1e3a8a] text-white hover:bg-[#1d4ed8]"
                 >
                   Lanjut Telaah &rarr;
                 </Link>
@@ -298,7 +298,7 @@ export default function DiagnosticPage() {
             {/* Answers Detail Review - Collapsible for Simplicity */}
             <div className="border-t border-slate-100 pt-5">
               <details className="group">
-                <summary className="flex items-center justify-between cursor-pointer list-none py-2 px-1 text-xs font-bold text-[#06525c] hover:text-[#086572] transition-colors">
+                <summary className="flex items-center justify-between cursor-pointer list-none py-2 px-1 text-xs font-bold text-[#1e3a8a] hover:text-[#1d4ed8] transition-colors">
                   <span>Lihat Pembahasan Lengkap Skenario ({questions.length} Kasus)</span>
                   <span className="text-xs group-open:rotate-180 transition-transform">&darr;</span>
                 </summary>
