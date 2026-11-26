@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# AI tooling, configuration & prompt files (kecuali AGENTS.md)
+.gemini/
+.taste-skill/
+.claude/
+.cursor/
+.windsurf/
+.continue/
+DESIGN.md
+PLAN.md
+SLOP.md
+FIX.md
+
+# Dev & reference folder
+development/
