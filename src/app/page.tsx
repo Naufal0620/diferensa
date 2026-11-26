@@ -21,6 +21,7 @@ import { ProfilSayaPage } from '@/views/ProfilSayaPage';
 import { RencanaAjarPage } from '@/views/RencanaAjarPage';
 import { SimulasiKelasPage } from '@/views/SimulasiKelasPage';
 import { TesDiagnostikPage } from '@/views/TesDiagnostikPage';
+import { KonsultasiAiPage } from '@/views/KonsultasiAiPage';
 import type {
   CommunityPost,
   DiagnosticSummary,
@@ -319,8 +320,8 @@ export default function DiferensaDashboard() {
         onToggleMobile={setMobileMenuOpen}
       />
 
-      <main className="flex-1 min-w-0">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className={`flex-1 min-w-0 ${activeRoute === 'konsultasi-ai' ? 'h-screen flex flex-col' : ''}`}>
+        <div className={activeRoute === 'konsultasi-ai' ? 'flex-1 flex flex-col h-full min-h-0' : 'max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8'}>
           {activeRoute === 'tes-diagnostik' && (
             <TesDiagnostikPage
               savedResult={progress.diagnosticResult}
@@ -407,6 +408,10 @@ export default function DiferensaDashboard() {
               onToggleLike={handleToggleLike}
               onAddReply={handleAddReply}
             />
+          )}
+
+          {activeRoute === 'konsultasi-ai' && (
+            <KonsultasiAiPage onNavigate={handleNavigate} />
           )}
 
           {activeRoute === 'profil-saya' && (
