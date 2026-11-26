@@ -1,6 +1,7 @@
 import {
   Award,
   BookOpen,
+  Bot,
   ClipboardList,
   Compass,
   FileSpreadsheet,
@@ -37,6 +38,7 @@ export const NAV_ITEMS: {
   { id: 'simulasi-kelas', label: 'Simulasi Kelas', icon: MonitorPlay },
   { id: 'rencana-ajar', label: 'Rencana Ajar Digital', icon: FileSpreadsheet },
   { id: 'evaluasi-akhir', label: 'Evaluasi Akhir', icon: Award },
+  { id: 'konsultasi-ai', label: 'Tanya Pendamping AI', icon: Bot },
   { id: 'komunitas-guru', label: 'Komunitas Guru', icon: MessageSquareText },
   { id: 'profil-saya', label: 'Profil Saya', icon: UserCircle2 },
 ];
@@ -44,7 +46,7 @@ export const NAV_ITEMS: {
 export function DiferensaLogo({ compact = false }: { compact?: boolean }) {
   return (
     <div className="flex items-center gap-3 shrink-0">
-      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-900 via-violet-700 to-teal-500 flex items-center justify-center shadow-sm shrink-0">
+      <div className="w-10 h-10 rounded-xl bg-blue-900 text-white flex items-center justify-center shadow-xs shrink-0">
         <Compass className="w-5 h-5 text-white" aria-hidden="true" />
       </div>
       {!compact && (
@@ -136,7 +138,7 @@ export function Sidebar({
         <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
           <div className="flex items-center justify-between text-xs mb-2">
             <span className="font-semibold text-slate-700">Progres Belajar</span>
-            <span className="font-mono font-semibold text-teal-700 tabular-nums">
+            <span className="font-mono font-semibold text-blue-900 tabular-nums">
               {progressPercent}%
             </span>
           </div>
@@ -149,7 +151,7 @@ export function Sidebar({
             aria-label="Persentase progres pembelajaran DIFERENSA"
           >
             <div
-              className="h-full rounded-full bg-gradient-to-r from-sky-500 via-violet-600 to-teal-500 transition-all duration-300"
+              className="h-full rounded-full bg-blue-900 transition-all duration-300"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -172,7 +174,7 @@ export function Sidebar({
           onClick={() => handleNavClick('beranda')}
           className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-blue-900 rounded-lg"
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-900 via-violet-700 to-teal-500 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-blue-900 text-white flex items-center justify-center shadow-xs">
             <Compass className="w-4 h-4 text-white" aria-hidden="true" />
           </div>
           <span className="font-display font-extrabold text-base text-slate-900">DIFERENSA</span>

@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="mt-16 border-t border-slate-200/80 bg-white py-6 text-xs text-slate-500 no-print">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <p className="font-bold text-[#06525c]">DIFERENSA</p>
+          <p className="font-bold text-[#1e3a8a]">DIFERENSA</p>
           <p className="text-[11px] text-slate-500 mt-0.5">
             Panduan Interaktif Penerapan Pembelajaran Berdiferensiasi Guru Sekolah Dasar &bull; Kurikulum Merdeka.
           </p>
@@ -22,7 +22,7 @@ export function Footer() {
               loadDemoData();
               window.location.reload();
             }}
-            className="hover:text-[#06525c] transition-colors cursor-pointer min-h-[40px] flex items-center touch-manipulation"
+            className="hover:text-[#1e3a8a] transition-colors cursor-pointer min-h-[40px] flex items-center touch-manipulation"
           >
             Muat Contoh Data
           </button>
