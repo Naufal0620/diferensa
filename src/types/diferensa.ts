@@ -10,7 +10,8 @@ export type NavRoute =
   | 'rencana-ajar'
   | 'evaluasi-akhir'
   | 'komunitas-guru'
-  | 'profil-saya';
+  | 'profil-saya'
+  | 'konsultasi-ai';
 
 export type LearningDimension = 'kesiapan' | 'minat' | 'profil';
 export type LearningStyle = 'Visual' | 'Auditori' | 'Kinestetik';
